@@ -7,15 +7,18 @@ License:	GPL v2
 Group:		X11/Applications
 Source0:	http://download.berlios.de/xfce-goodies/%{name}-%{version}.tar.gz
 # Source0-md5:	b67b164266a58f3651201be11b6aea04
-URL:		http://xfce-goodies.berlios.de/
+URL:		http://goodies.xfce.org/projects/panel-plugins/xfce4-radio-plugin
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	xfce4-dev-tools
-BuildRequires:	xfce4-panel-devel >= 4.3.90.1
+BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	xfce4-dev-tools >= 4.4.0
+BuildRequires:	xfce4-panel-devel >= 4.4.0
+Requires(post,postun):	gtk+2
+Requires(post,postun):	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -24,16 +27,16 @@ radio device. You can turn your radio on/off, tune it to some
 frequency and manage station presets.
 
 %description -l pl
-Ten pakiet zawiera wtyczkê dla panelu Xfce pozwalaj±c± sterowaæ
-radiem dostêpnym przez interfejs V4l. Mo¿na w³±czaæ i wy³±czaæ radio,
-stroiæ na jak±¶ czêstotliwo¶æ i zarz±dzaæ ustawieniami stacji.
+Ten pakiet zawiera wtyczkê dla panelu Xfce pozwalaj±c± sterowaæ radiem
+dostêpnym przez interfejs V4l. Mo¿na w³±czaæ i wy³±czaæ radio, stroiæ
+na jak±¶ czêstotliwo¶æ i zarz±dzaæ ustawieniami stacji.
 
 %prep
 %setup -q
 
 %build
 %{__libtoolize}
-%{__aclocal} -I %{_datadir}/xfce4/dev-tools/m4macros
+%{__aclocal}
 %{__autoheader}
 %{__automake}
 %{__autoconf}
@@ -50,6 +53,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%update_icon_cache hicolor
+
+%postun
+%update_icon_cache hicolor
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
