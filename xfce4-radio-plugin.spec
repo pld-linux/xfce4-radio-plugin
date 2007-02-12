@@ -1,5 +1,5 @@
 Summary:	Radio plugin for the Xfce panel
-Summary(pl):	Wtyczka z radiem dla panelu Xfce
+Summary(pl.UTF-8):   Wtyczka z radiem dla panelu Xfce
 Name:		xfce4-radio-plugin
 Version:	0.2.0
 Release:	1
@@ -26,10 +26,10 @@ This is an Xfce panel plugin which allows you to control your V4l
 radio device. You can turn your radio on/off, tune it to some
 frequency and manage station presets.
 
-%description -l pl
-Ten pakiet zawiera wtyczkê dla panelu Xfce pozwalaj±c± sterowaæ radiem
-dostêpnym przez interfejs V4l. Mo¿na w³±czaæ i wy³±czaæ radio, stroiæ
-na jak±¶ czêstotliwo¶æ i zarz±dzaæ ustawieniami stacji.
+%description -l pl.UTF-8
+Ten pakiet zawiera wtyczkÄ™ dla panelu Xfce pozwalajÄ…cÄ… sterowaÄ‡ radiem
+dostÄ™pnym przez interfejs V4l. MoÅ¼na wÅ‚Ä…czaÄ‡ i wyÅ‚Ä…czaÄ‡ radio, stroiÄ‡
+na jakÄ…Å› czÄ™stotliwoÅ›Ä‡ i zarzÄ…dzaÄ‡ ustawieniami stacji.
 
 %prep
 %setup -q
