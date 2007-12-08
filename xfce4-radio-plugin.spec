@@ -5,7 +5,7 @@ Version:	0.2.1
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://download.berlios.de/xfce-goodies/%{name}-%{version}.tar.gz
+Source0:	http://goodies.xfce.org/releases/xfce4-radio-plugin/%{name}-%{version}.tar.gz
 # Source0-md5:	1df138153be0c70757df5a16f018a486
 URL:		http://goodies.xfce.org/projects/panel-plugins/xfce4-radio-plugin
 BuildRequires:	autoconf
