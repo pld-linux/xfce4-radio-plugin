@@ -1,17 +1,14 @@
 Summary:	Radio plugin for the Xfce panel
 Summary(pl.UTF-8):	Wtyczka z radiem dla panelu Xfce
 Name:		xfce4-radio-plugin
-Version:	0.4.2
+Version:	0.4.4
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://goodies.xfce.org/releases/xfce4-radio-plugin/%{name}-%{version}.tar.gz
-# Source0-md5:	954eeb91af7ae8d1a38c7994a638318c
+Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-radio-plugin/0.4/%{name}-%{version}.tar.bz2
+# Source0-md5:	7222b39f399852ab15067a3c1cc25574
 URL:		http://goodies.xfce.org/projects/panel-plugins/xfce4-radio-plugin
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	intltool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	xfce4-dev-tools >= 4.4.0
@@ -34,12 +31,8 @@ na jakąś częstotliwość i zarządzać ustawieniami stacji.
 %setup -q
 
 %build
-%{__intltoolize}
-%{__aclocal}
-%{__autoheader}
-%{__automake}
-%{__autoconf}
 %configure
+
 %{__make}
 
 %install
@@ -47,6 +40,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/ur_PK
 
 %find_lang %{name}
 
