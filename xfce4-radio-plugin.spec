@@ -9,6 +9,7 @@ Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-radio-plugin/0.4/%{name
 # Source0-md5:	7222b39f399852ab15067a3c1cc25574
 URL:		http://goodies.xfce.org/projects/panel-plugins/xfce4-radio-plugin
 BuildRequires:	gettext-devel
+BuildRequires:	intltool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	xfce4-dev-tools >= 4.4.0
