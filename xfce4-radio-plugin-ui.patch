@@ -1,0 +1,73 @@
+diff -ur xfce4-radio-plugin-0.4.4-orig/configure.in xfce4-radio-plugin-0.4.4/configure.in
+--- xfce4-radio-plugin-0.4.4-orig/configure.in	2010-11-04 16:00:11.000000000 +0100
++++ xfce4-radio-plugin-0.4.4/configure.in	2011-03-01 13:20:59.449063514 +0100
+@@ -36,7 +36,7 @@
+ 
+ dnl configure the panel plugin
+ XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.22])
+-XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.3.22])
++XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.8.0])
+ 
+ dnl check for i18n support
+ XDT_I18N([ar ast ca cs da de en_GB es eu fr gl hu id it ja lv nl pl pt_BR pt ru sq sv tr ug uk ur_PK ur zh_CN zh_TW ])
+diff -ur xfce4-radio-plugin-0.4.4-orig/panel-plugin/Makefile.am xfce4-radio-plugin-0.4.4/panel-plugin/Makefile.am
+--- xfce4-radio-plugin-0.4.4-orig/panel-plugin/Makefile.am	2010-10-26 02:32:25.000000000 +0200
++++ xfce4-radio-plugin-0.4.4/panel-plugin/Makefile.am	2011-03-01 13:20:59.449063514 +0100
+@@ -10,12 +10,12 @@
+ xfce4_radio_plugin_CFLAGS =						\
+ 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
+ 	@LIBXFCE4PANEL_CFLAGS@						\
+-	@LIBXFCEGUI4_CFLAGS@						\
++	@LIBXFCE4UI_CFLAGS@						\
+ 	-std=c99
+ 
+ xfce4_radio_plugin_LDADD =						\
+ 	@LIBXFCE4PANEL_LIBS@						\
+-	@LIBXFCEGUI4_LIBS@
++	@LIBXFCE4UI_LIBS@
+ 
+ # .desktop file
+ #
+diff -ur xfce4-radio-plugin-0.4.4-orig/panel-plugin/xfce4-radio.c xfce4-radio-plugin-0.4.4/panel-plugin/xfce4-radio.c
+--- xfce4-radio-plugin-0.4.4-orig/panel-plugin/xfce4-radio.c	2010-11-04 16:00:07.000000000 +0100
++++ xfce4-radio-plugin-0.4.4/panel-plugin/xfce4-radio.c	2011-03-01 13:21:59.741063514 +0100
+@@ -51,8 +51,7 @@
+ #include "v4l1.h"
+ #include "v4l2.h"
+ 
+-#include <libxfcegui4/dialogs.h>
+-#include <libxfcegui4/xfce-exec.h>
++#include <libxfce4ui/libxfce4ui.h>
+ #include <libxfce4util/libxfce4util.h>
+ #include <gdk/gdkkeysyms.h>
+ 
+@@ -323,7 +322,7 @@
+ 
+ 	if (strcmp(data->startup_command, "") != 0)
+ 	{
+-		xfce_exec(data->startup_command, FALSE, FALSE, NULL);
++		xfce_spawn_command_line_on_screen(gdk_screen_get_default(), data->startup_command, FALSE, FALSE, NULL);
+ 	}
+ 	xfce4_radio_tune (data);
+ 	gtk_tooltips_enable (data->tooltips);
+@@ -348,7 +347,7 @@
+ 
+ 	if (strcmp (data->shutdown_command, "") != 0)
+ 	{
+-		xfce_exec (data->shutdown_command, FALSE, FALSE, NULL);
++		xfce_spawn_command_line_on_screen(gdk_screen_get_default(), data->shutdown_command, FALSE, FALSE, NULL);
+ 	}
+ }
+ 
+diff -ur xfce4-radio-plugin-0.4.4-orig/panel-plugin/xfce4-radio.h xfce4-radio-plugin-0.4.4/panel-plugin/xfce4-radio.h
+--- xfce4-radio-plugin-0.4.4-orig/panel-plugin/xfce4-radio.h	2010-10-26 02:32:25.000000000 +0200
++++ xfce4-radio-plugin-0.4.4/panel-plugin/xfce4-radio.h	2011-03-01 13:20:59.453063514 +0100
+@@ -28,7 +28,7 @@
+ #include <sys/ioctl.h>
+ #include <linux/videodev.h>
+ 
+-#include <libxfce4panel/xfce-panel-plugin.h>
++#include <libxfce4panel/libxfce4panel.h>
+ 
+ #define FREQ_MIN		8750
+ #define FREQ_MAX		10800
