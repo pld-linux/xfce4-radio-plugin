@@ -31,16 +31,15 @@ diff -ur xfce4-radio-plugin-0.4.4-orig/panel-plugin/Makefile.am xfce4-radio-plug
 diff -ur xfce4-radio-plugin-0.4.4-orig/panel-plugin/xfce4-radio.c xfce4-radio-plugin-0.4.4/panel-plugin/xfce4-radio.c
 --- xfce4-radio-plugin-0.4.4-orig/panel-plugin/xfce4-radio.c	2010-11-04 16:00:07.000000000 +0100
 +++ xfce4-radio-plugin-0.4.4/panel-plugin/xfce4-radio.c	2011-03-01 13:21:59.741063514 +0100
-@@ -51,8 +51,7 @@
- #include "v4l1.h"
+@@ -51,7 +51,7 @@
+ #include "radio.h"
  #include "v4l2.h"
  
--#include <libxfcegui4/dialogs.h>
--#include <libxfcegui4/xfce-exec.h>
+-#include <libxfcegui4/libxfcegui4.h>
 +#include <libxfce4ui/libxfce4ui.h>
- #include <libxfce4util/libxfce4util.h>
  #include <gdk/gdkkeysyms.h>
  
+ #include <linux/videodev2.h>
 @@ -323,7 +322,7 @@
  
  	if (strcmp(data->startup_command, "") != 0)
@@ -52,9 +51,9 @@ diff -ur xfce4-radio-plugin-0.4.4-orig/panel-plugin/xfce4-radio.c xfce4-radio-pl
  	gtk_tooltips_enable (data->tooltips);
 @@ -348,7 +347,7 @@
  
- 	if (strcmp (data->shutdown_command, "") != 0)
+ 	if (strcmp(data->shutdown_command, "") != 0)
  	{
--		xfce_exec (data->shutdown_command, FALSE, FALSE, NULL);
+-		xfce_exec(data->shutdown_command, FALSE, FALSE, NULL);
 +		xfce_spawn_command_line_on_screen(gdk_screen_get_default(), data->shutdown_command, FALSE, FALSE, NULL);
  	}
  }
