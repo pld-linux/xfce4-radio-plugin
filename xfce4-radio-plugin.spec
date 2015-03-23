@@ -2,7 +2,7 @@ Summary:	Radio plugin for the Xfce panel
 Summary(pl.UTF-8):	Wtyczka z radiem dla panelu Xfce
 Name:		xfce4-radio-plugin
 Version:	0.5.1
-Release:	1
+Release:	2
 License:	GPL v3
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-radio-plugin/0.5/%{name}-%{version}.tar.bz2
